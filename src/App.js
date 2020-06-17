@@ -7,8 +7,8 @@ function App() {
 
   const [ repositories, setRepositories ] = useState([]);
 
-  useEffect(() =>{
-    api.get('repositories').then((response) => {
+  useEffect(() => {
+    api.get("repositories").then((response) => {
       setRepositories(response.data);
     });
   },[]);
@@ -21,14 +21,14 @@ function App() {
       techs: ["React", "NodeJS"]
     };
 
-    const repoResult = await api.post('repositories', repository);
+    const repoResult = await api.post("repositories", repository);
     setRepositories([...repositories, repoResult.data]);
   }
 
   async function handleRemoveRepository(id) {
     await api.delete(`repositories/${id}`);
     repositories.splice(repositories
-      .findIndex(repository => repository.id === id), 1)
+      .findIndex((repository) => repository.id === id), 1);
     setRepositories([...repositories]);
   }
 
